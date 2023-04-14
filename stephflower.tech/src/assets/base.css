@@ -6,20 +6,21 @@
   --blue: rgba(139,247,245,1);
   --pink: rgba(249,171,249,1);
   --yellow: rgba(245,244,170,1);
-  --window-grey: 
+  --window-grey: silver;
+  --default-green: #008080;
 }
 
 body {
   height: 100vh;
   margin: 0px;
   color: var(--color-text);
-  background: rgb(156,252,174);
-	background: linear-gradient(90deg, var(--green) 0%, var(--blue) 32%, var(--pink) 68%, var(--yellow) 100%);
+  background: var(--default-green);
+	/*background: linear-gradient(90deg, var(--green) 0%, var(--blue) 32%, var(--pink) 68%, var(--yellow) 100%);*/
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Pixelated MS Sans Serif", Arial;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 11px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

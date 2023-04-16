@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import Window from './components/Window.vue';
 import TaskBar from './components/TaskBar.vue';
+import DesktopIcon from './components/DesktopIcon.vue';
 </script>
 
 <template>
+
+    <div class="desktopIcons">
+      <DesktopIcon />
+      <DesktopIcon />
+    </div>
+
     <Window>
       wa wa wee wa
     </Window>
@@ -12,5 +19,11 @@ import TaskBar from './components/TaskBar.vue';
 </template>
 
 <style scoped>
+  .desktopIcons {
+    position: absolute;
+    display: grid;
+    top: 0;
+    left: 0;
+  }
 
 </style>

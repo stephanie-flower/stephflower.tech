@@ -14,6 +14,7 @@
             <b> Start </b> 
         </div>
         <div class="sep"></div>
+        
         <div class="time">
             {{getTime()}}
         </div>
@@ -30,12 +31,15 @@
         height: 1.9vw;
         display: flex;
         flex-direction: row;
+        align-items: center;
         box-shadow: inset -2px -2px #0a0a0a,inset 2px 2px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
     }
 
     .sep {
         box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-        width: 1px;
+        width: 3px;
+        height: 75%;
+        margin: 4px;
     }
 
     .start {
@@ -49,19 +53,21 @@
     }
 
     .time {
-        margin: 4px;
+        margin-left: auto;
+        margin-right: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-items: center;
-        margin-left: auto;
         font-size: 12px;
-        padding: 0.5vw;
+        padding: 0.3vw;
         box-shadow: inset -2px -2px #dfdfdf,inset 2px 2px #808080,inset -2px -2px grey,inset 2px 2px #fff;
     }
 
     .start img {
-        width: 1vw;
+        width: 1.2vw;
         height: 1.2vw;
         padding: 5px;
     }

@@ -1,10 +1,19 @@
-<script setup lang="ts">
+<script lang="ts">
     import "98.css";
+    import { defineComponent } from "vue";
 
-    const getTime = () => {
-        let timeNow = new Date();
-        return timeNow.toTimeString().slice(0, 5);
-    }
+    export default defineComponent({
+        data() {
+            return {
+                date: new Date().toTimeString().slice(0, 5)
+            }
+        },
+        created() {
+            window.setInterval(() => {
+                this.date = new Date().toTimeString().slice(0, 5);
+            }, 1000);
+        }
+    })
 </script>
 
 <template>
@@ -16,7 +25,7 @@
         <div class="sep"></div>
         
         <div class="time">
-            {{getTime()}}
+            {{date}}
         </div>
     </div>
 </template>

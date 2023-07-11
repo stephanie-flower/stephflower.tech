@@ -1,6 +1,7 @@
 <script lang="ts">
     import "98.css";
     import { defineComponent } from "vue";
+    import StartMenu from "./StartMenu.vue";
 
     export default defineComponent({
         data() {
@@ -17,11 +18,12 @@
 </script>
 
 <template>
+    <StartMenu />
     <div class="taskbar">
-        <div class="start">
+        <button>
             <img src="start.png" />
             <b> Start </b> 
-        </div>
+        </button>
         <div class="sep"></div>
         
         <div class="time">
@@ -44,6 +46,24 @@
         box-shadow: inset -2px -2px #0a0a0a,inset 2px 2px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
     }
 
+    .taskbar button img {
+        height: 2vh;
+        margin-right: 5px;
+    }
+
+    .taskbar button {
+        height: 1.7vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 2px;
+    }
+
+    .taskbar b {
+        font-size: 1rem;
+    }
+
     .sep {
         box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
         width: 3px;
@@ -51,16 +71,7 @@
         margin: 4px;
     }
 
-    .start {
-        margin: 4px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-items: center;
-        font-size: 14px;
-        box-shadow: inset -2px -2px #0a0a0a,inset 2px 2px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
-    }
-
+    
     .time {
         margin-left: auto;
         margin-right: 4px;

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
     import "98.css";
     import { defineComponent, ref } from "vue";
     import Vue3DraggableResizable from "vue3-draggable-resizable"
@@ -30,6 +30,6 @@
     </Vue3DraggableResizable>
 </template>
 
-<style>
+<style scoped>
     
 </style>

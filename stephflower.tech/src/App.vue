@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Window from './components/Window.vue';
 import TaskBar from './components/TaskBar.vue';
+import StartMenu from './components/StartMenu.vue';
 import DesktopIcon from './components/DesktopIcon.vue';
 import Vue3DraggableResizable from "vue3-draggable-resizable";
 </script>
@@ -14,7 +15,6 @@ import Vue3DraggableResizable from "vue3-draggable-resizable";
     </div>
 
     <Window />
-
     <TaskBar />
 
 </template>

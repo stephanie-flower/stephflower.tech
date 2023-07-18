@@ -7,7 +7,7 @@
     <div class="startmenu">
         
         <div class="vertical-title">
-            <img src="menutitle.png" />
+            <div class="title-bar-text"> stephflower.tech </div>
         </div>
 
         <div class="menu-options">
@@ -29,6 +29,11 @@
         bottom: 1.7vw;
         width: 15vw;
         height: 50vh;
+    }
+
+
+    .vertical-title {
+        background: linear-gradient(90deg,navy,#1084d0);
     }
 
     .vertical-title .title-bar-text {

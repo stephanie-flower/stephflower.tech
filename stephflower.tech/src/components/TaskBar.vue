@@ -1,25 +1,20 @@
-<script lang="ts">
+<script setup lang="ts">
     import "98.css";
-    import { defineComponent } from "vue";
+    import { reactive } from "vue";
     import StartMenu from "./StartMenu.vue";
 
-    export default defineComponent({
-        data() {
-            return {
-                date: new Date().toTimeString().slice(0, 5)
-            }
-        },
-        created() {
-            window.setInterval(() => {
-                this.date = new Date().toTimeString().slice(0, 5);
-            }, 1000);
-        }
-    })
+    const date = reactive({time: new Date().toTimeString().slice(0, 5)});
+
+    window.setInterval(() => {
+        date.time = new Date().toTimeString().slice(0, 5);
+    }, 1000);
+
 </script>
 
 <template>
     <StartMenu />
     <div class="taskbar">
+
         <button>
             <img src="start.png" />
             <b> Start </b> 
@@ -27,7 +22,7 @@
         <div class="sep"></div>
         
         <div class="time">
-            {{date}}
+            {{date.time}}
         </div>
     </div>
 </template>

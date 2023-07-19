@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import '98.css';
+    import StartMenuItem from './StartMenuItem.vue';
 </script>
 
 <template>
@@ -11,7 +12,7 @@
         </div>
 
         <div class="menu-options">
-            Start menu
+            <StartMenuItem />
         </div>
     </div>
 
@@ -24,7 +25,8 @@
         background-color: var(--window-grey);
         position: absolute;
         display: flex;
-        flex-direction: row;
+        flex-flow: row nowrap;
+        align-items: stretch;
         left: 0;
         bottom: 1.7vw;
         width: 15vw;
@@ -34,13 +36,19 @@
 
     .vertical-title {
         background: linear-gradient(90deg,navy,#1084d0);
+        width: 45px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 2px;
     }
 
     .vertical-title .title-bar-text {
         font-weight: 400;
-        font-size: 1rem;
-        margin: 2px;
-        margin-left: 15px;
+        font-size: 1.5rem;
+        transform: rotate(-90deg) translateX(50%) translateY(30%);
+        transform-origin: center;
     }
 
     .menu-options {

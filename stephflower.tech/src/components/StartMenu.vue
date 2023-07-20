@@ -8,10 +8,13 @@
     <div class="startmenu">
         
         <div class="vertical-title">
-            <div class="title-bar-text"> stephflower.tech </div>
+            <div class="title-bar-text"> <b>stephflower</b>.tech </div>
         </div>
 
         <div class="menu-options">
+            <StartMenuItem />
+            <StartMenuItem />
+            <StartMenuItem />
             <StartMenuItem />
         </div>
     </div>
@@ -35,7 +38,7 @@
 
 
     .vertical-title {
-        background: linear-gradient(90deg,navy,#1084d0);
+        background: linear-gradient(navy,#1084d0);
         width: 45px;
         display: flex;
         flex-flow: column nowrap;
@@ -54,6 +57,7 @@
     .menu-options {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
 

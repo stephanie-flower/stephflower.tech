@@ -1,21 +1,26 @@
 <script setup lang="ts">
     import "98.css";
-    import { reactive } from "vue";
+    import { reactive, ref } from "vue";
     import StartMenu from "./StartMenu.vue";
 
     const date = reactive({time: new Date().toTimeString().slice(0, 5)});
+    var showStartMenu = ref(false);
 
     window.setInterval(() => {
         date.time = new Date().toTimeString().slice(0, 5);
     }, 1000);
 
+    const toggleStartMenu = () => {
+        showStartMenu.value = !showStartMenu.value;
+    }
+
 </script>
 
 <template>
-    <StartMenu />
+    <StartMenu v-show="showStartMenu" />
     <div class="taskbar">
 
-        <button>
+        <button @click="toggleStartMenu">
             <img src="start.png" />
             <b> Start </b> 
         </button>

@@ -21,5 +21,6 @@
         flex-direction: column;
         align-items: center;
         padding: 10px;
+        user-select: none;
     }
 </style>

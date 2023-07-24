@@ -3,11 +3,17 @@
     import "98.css";
     import { ref } from "vue";
 
+    const emit = defineEmits(['open']);
     var isActive = ref(false);
 
     const toggleActive = () => {
+        if (isActive.value) {
+            console.log("open window ");
+            emit("open")
+        }
         isActive.value = !isActive.value;
     }
+
 
 </script>
 
@@ -46,5 +52,10 @@
         border: dotted black 1px;
         background-color: #000080;
         color: white;
+    }
+
+    .icon-selected img {
+        opacity: 60%;
+        background-color: #000080;
     }
 </style>

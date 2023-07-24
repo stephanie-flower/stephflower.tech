@@ -2,6 +2,7 @@
     import "98.css";
     import { reactive, ref } from "vue";
     import StartMenu from "./StartMenu.vue";
+    import TaskBarWindow from "./TaskBarWindow.vue";
 
     const date = reactive({time: new Date().toTimeString().slice(0, 5)});
     var showStartMenu = ref(false);
@@ -25,6 +26,10 @@
             <b> Start </b> 
         </button>
         <div class="sep"></div>
+
+        <div class="windows">
+            <TaskBarWindow @toggle="$emit('toggle')"/>
+        </div>
         
         <div class="time">
             {{date.time}}

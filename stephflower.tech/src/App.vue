@@ -6,7 +6,9 @@ import { ref } from 'vue';
 
   var showWindow = ref(false);
 
-  const openWindow = () => {
+  const aboutImg = "desktopIcons/about.png"
+
+  const openWindow = (window: string) => {
     showWindow.value = true;
   }
 
@@ -23,9 +25,9 @@ import { ref } from 'vue';
 <template>
 
     <div class="desktopIcons">
-      <DesktopIcon @open="openWindow" />
-      <DesktopIcon /> 
-      <DesktopIcon />  
+      <DesktopIcon @open="openWindow" :image="aboutImg" />
+      <DesktopIcon @open="openWindow" :image="aboutImg" /> 
+      <DesktopIcon @open="openWindow" :image="aboutImg" />  
     </div>
 
     <Window v-show="showWindow" @close="hideWindow"/>

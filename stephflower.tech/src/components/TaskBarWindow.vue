@@ -2,13 +2,12 @@
     import "98.css";
     import { ref } from 'vue';
 
-    var active = ref(false);
 
 </script>
 
 <template>
 
-    <button @click="$emit('toggle')" v-show="active">
+    <button @click="$emit('toggle')">
         <img src="desktopIcons/about.png" />
         <div class="text"> about </div>
     </button>

@@ -7,9 +7,7 @@ import { ref } from 'vue';
 
   var showWindow = ref(false);
 
-  const openWindow = () => {
-    showWindow.value = true;
-  }
+  var windowTitle = "System Properties";
 
   const hideWindow = () => {
     showWindow.value = false;
@@ -23,22 +21,22 @@ import { ref } from 'vue';
     {
       image : "desktopIcons/about.png",
       title : "About",
-      link : () => {showWindow.value = true; console.log("about");}
+      link : () => { showWindow.value = true; console.log("about"); }
     },
     {
       image : "desktopIcons/contact.png",
       title : "Contact",
-      link : openWindow
+      link : () => { showWindow.value = true; console.log("contact"); }
     },
     {
       image : "desktopIcons/projects.png",
       title : "Projects",
-      link : openWindow
+      link : () => { showWindow.value = true; console.log("projects"); }
     },
     {
       image : "desktopIcons/skills.png",
       title : "Skills",
-      link : openWindow
+      link : () => { showWindow.value = true; console.log("skills"); }
     }
   ];
 
@@ -56,7 +54,7 @@ import { ref } from 'vue';
 
     </div>
 
-    <Window v-show="showWindow" @close="hideWindow">
+    <Window v-show="showWindow" @close="hideWindow" :title="windowTitle">
       <About />
     </Window>
     

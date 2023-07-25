@@ -3,6 +3,7 @@
     import { defineComponent, ref } from "vue";
     import Vue3DraggableResizable from "vue3-draggable-resizable"
 
+    const props = defineProps(['title'])
 </script>
 
 <template>
@@ -14,7 +15,7 @@
     >
         <div class="window">
             <div class="title-bar">
-                <div class="title-bar-text"> hello world </div>
+                <div class="title-bar-text"> {{ props.title }} </div>
                 <div class="title-bar-controls">
                     <button aria-label="Minimize"></button>
                     <button aria-label="Maximize"></button>

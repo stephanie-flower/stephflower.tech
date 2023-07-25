@@ -3,7 +3,7 @@
     import "98.css";
     import { ref } from "vue";
 
-    const props = defineProps(['image']);
+    const props = defineProps(['image', 'title']);
 
     const emit = defineEmits(['open']);
     var isActive = ref(false);
@@ -24,7 +24,7 @@
     :class="{ 'icon-selected': isActive }"
     @click="toggleActive">
         <img :src="image" alt="About Me">
-        <div class="text"> About </div>
+        <div class="text"> {{ title }} </div>
     </div>
 </template>
 

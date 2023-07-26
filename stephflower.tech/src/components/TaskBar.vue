@@ -28,7 +28,10 @@
         <div class="sep"></div>
 
         <div class="windows">
-            <TaskBarWindow @toggle="$emit('toggle')"/>
+            <TaskBarWindow 
+                @toggle="$emit('toggle')"
+                :img="'desktopIcons/about.png'"
+                :title="'System Properties'"/>
         </div>
         
         <div class="time">

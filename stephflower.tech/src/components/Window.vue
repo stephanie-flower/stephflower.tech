@@ -1,15 +1,16 @@
 <script setup lang="ts">
     import "98.css";
     import { defineComponent, ref } from "vue";
-    import Vue3DraggableResizable from "vue3-draggable-resizable"
+    import Vue3DraggableResizable from "vue3-draggable-resizable";
 
-    const props = defineProps(['title'])
+    const props = defineProps(['title', 'minw']);
+
 </script>
 
 <template>
     <Vue3DraggableResizable
     :init-w="200"
-    :min-w="150"
+    :min-w="props.minw"
     :min-h="65"
     :handles="['br']"
     >

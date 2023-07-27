@@ -18,7 +18,7 @@
             <div class="title-bar">
                 <div class="title-bar-text"> {{ props.title }} </div>
                 <div class="title-bar-controls">
-                    <button aria-label="Minimize"></button>
+                    <button aria-label="Minimize" @click="$emit('hide')"></button>
                     <button aria-label="Maximize"></button>
                     <button aria-label="Close" @click="$emit('close')"></button>
                 </div>

@@ -8,33 +8,37 @@ import Projects from './components/sections/Projects.vue';
 import Skills from './components/sections/Skills.vue';
 import { ref } from 'vue';
 
-  var showWindow = ref(false);
   var showWindows = [ref(false), ref(false), ref(false), ref(false)];
-
-  const toggleWindow = () => {
-    showWindow.value = !showWindow.value;
-  }
+  var showTaskBars = [ref(false), ref(false), ref(false), ref(false)];
 
   const icons = [
     {
       image : "desktopIcons/about.png",
       title : "About",
-      open : () => { showWindows[0].value = true; },
+      open : () => { showWindows[0].value = true; showTaskBars[0].value = true; },
+      minw : 600,
+      cont : About
     },
     {
       image : "desktopIcons/contact.png",
       title : "Contact",
-      open : () => { showWindows[1].value = true; },
+      open : () => { showWindows[1].value = true; showTaskBars[1].value = true; },
+      minw : 300,
+      cont : Contact
     },
     {
       image : "desktopIcons/projects.png",
       title : "Projects",
-      open : () => { showWindows[2].value = true; },
+      open : () => { showWindows[2].value = true; showTaskBars[2].value = true; },
+      minw : 300,
+      cont : Projects
     },
     {
       image : "desktopIcons/skills.png",
       title : "Skills",
-      open : () => { showWindows[3].value = true; },
+      open : () => { showWindows[3].value = true; showTaskBars[3].value = true; },
+      minw : 300,
+      cont : Skills
     }
   ];
 
@@ -45,46 +49,26 @@ import { ref } from 'vue';
     <div class="desktopIcons">
 
       <DesktopIcon v-for="item in icons"
-      @open="item.open" 
-      :image="item.image" 
-      :title="item.title" 
+        @open="item.open" 
+        :image="item.image" 
+        :title="item.title" 
       />
 
     </div>
 
-    <Window
-      @close="() => {showWindows[0].value = false;}" 
-      v-show="showWindows[0].value"
-      :title="'System Properties'"
-      :minw="600">
-      <About />
+    <Window v-for="(item, index) in icons"
+      @close="() => { showWindows[index].value = false; showTaskBars[index].value = false }"
+      @hide="() => { showWindows[index].value = false; }" 
+      v-show="showWindows[index].value"
+      :title="item.title"
+      :minw="item.minw">
+      <component :is="item.cont" />
     </Window>
 
-    <Window
-      @close="() => {showWindows[1].value = false;}" 
-      v-show="showWindows[1].value"
-      :title="'Contact'"
-      :minw="600">
-      <Contact />
-    </Window>
-
-    <Window
-      @close="() => {showWindows[2].value = false;}" 
-      v-show="showWindows[2].value"
-      :title="'Projects'"
-      :minw="600">
-      <Projects />
-    </Window>
-
-    <Window
-      @close="() => {showWindows[3].value = false;}" 
-      v-show="showWindows[3].value"
-      :title="'Skills'"
-      :minw="600">
-      <Skills />
-    </Window>
-
-    <TaskBar @toggle="toggleWindow"/>
+    <TaskBar 
+      :taskBarWindows="icons"
+      :showWindows="showTaskBars"
+      @toggle="(n) => { showWindows[n].value = !showWindows[n].value }"/>
 
 </template>
 

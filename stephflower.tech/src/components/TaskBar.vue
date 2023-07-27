@@ -4,6 +4,8 @@
     import StartMenu from "./StartMenu.vue";
     import TaskBarWindow from "./TaskBarWindow.vue";
 
+    const props = defineProps(['taskBarWindows', 'showWindows']);
+
     const date = reactive({time: new Date().toTimeString().slice(0, 5)});
     var showStartMenu = ref(false);
 
@@ -28,10 +30,11 @@
         <div class="sep"></div>
 
         <div class="windows">
-            <TaskBarWindow 
-                @toggle="$emit('toggle')"
-                :img="'desktopIcons/about.png'"
-                :title="'System Properties'"/>
+            <TaskBarWindow v-for="(item, index) in props.taskBarWindows"
+                v-show="props.showWindows[index].value"
+                :img="item.image"
+                :title="item.title"
+                @click="$emit('toggle', index)"/>
         </div>
         
         <div class="time">
@@ -102,5 +105,10 @@
 
     .start b {
         padding: 5px;
+    }
+
+    .windows {
+        display: flex;
+        flex-direction: row;
     }
 </style>

@@ -38,7 +38,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px;
+        padding: 15px;
         user-select: none;
     }
 
@@ -46,7 +46,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px;
+        padding: 15px;
         user-select: none;
     }
 

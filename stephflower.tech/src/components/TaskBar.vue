@@ -3,6 +3,7 @@
     import { reactive, ref } from "vue";
     import StartMenu from "./StartMenu.vue";
     import TaskBarWindow from "./TaskBarWindow.vue";
+    import Sep from "./Sep.vue";
 
     const props = defineProps(['taskBarWindows', 'showWindows']);
 
@@ -27,8 +28,9 @@
             <img src="start.png" />
             <b> Start </b> 
         </button>
-        <div class="sep"></div>
 
+        <Sep />
+        
         <div class="windows">
             <TaskBarWindow v-for="(item, index) in props.taskBarWindows"
                 v-show="props.showWindows[index].value"
@@ -74,14 +76,6 @@
     .taskbar b {
         font-size: 1rem;
     }
-
-    .sep {
-        box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-        width: 3px;
-        height: 75%;
-        margin: 4px;
-    }
-
     
     .time {
         margin-left: auto;

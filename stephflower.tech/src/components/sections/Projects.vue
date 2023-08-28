@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import '98.css';
     import DesktopIcon from '../DesktopIcon.vue';
+    import Sep from '../Sep.vue';
 
     const projects = [
         {
@@ -30,6 +31,7 @@
     <div>
         <fieldset>
             <div class="toolbar">
+                <Sep />
                 <div class="optn"> <u>F</u>ile </div> 
                 <div class="optn"> <u>E</u>dit </div> 
                 <div class="optn"> <u>V</u>iew </div> 
@@ -40,19 +42,26 @@
         </fieldset>
         <fieldset>
             <div class="toolbar">
-                <div class="btn"> Back </div>
-                <div class="btn"> Forward </div>
-                <div class="btn"> Up </div>
-                <div class="btn"> Cut </div>
-                <div class="btn"> Copy </div>
-                <div class="btn"> Paste </div>
-                <div class="btn"> Undo </div>
-                <div class="btn"> Delete </div>
+                <div class="btns">
+                    <Sep />
+                    <div> <img src="explorer/open.png" /> Back </div>
+                    <div> <img src="explorer/open.png" /> Forward </div>
+                    <div> <img src="explorer/open.png" /> Up </div>
+                    <Sep />
+                    <div> <img src="explorer/open.png" /> Cut </div>
+                    <div> <img src="explorer/open.png" /> Copy </div>
+                    <div> <img src="explorer/open.png" /> Paste </div>
+                    <Sep />
+                    <div> <img src="explorer/open.png" /> Undo </div>
+                    <Sep />
+                    <div> <img src="explorer/open.png" /> Delete </div>
+                </div>
             </div>
         </fieldset>
         <div class="bg">
             <div class="title">
-                Projects
+                <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
+                <div class="line" />
                 Select an item to view its description.
             </div>
             <div class="folders">
@@ -72,7 +81,7 @@
 
 </template>
 
-<style>
+<style scoped>
 
 fieldset {
     padding: 2px;
@@ -81,6 +90,34 @@ fieldset {
 .optn {
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.line {
+    height: 2px;
+    width: 200px;
+    background: linear-gradient(to right, #FF3300 25%, #FFCC00 25%, #FFCC00 50%, #66CC33 50%, #66CC33 75%, #0099FF 75%);
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.btns div {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    align-items: center;
+}
+
+.btns img {
+    width: 24px;
+}
+
+.btns .sep {
+    width: 3px !important;
+    margin: 0;
+    height: 100%;
 }
 
 .toolbar {

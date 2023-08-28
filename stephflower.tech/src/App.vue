@@ -30,7 +30,7 @@ import { ref } from 'vue';
       image : "desktopIcons/projects.png",
       title : "Projects",
       open : () => { showWindows[2].value = true; showTaskBars[2].value = true; },
-      minw : 300,
+      minw : 600,
       cont : Projects
     },
     {

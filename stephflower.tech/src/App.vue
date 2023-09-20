@@ -74,6 +74,7 @@ import { ref } from 'vue';
 
 <style scoped>
   .desktopIcons {
+    color: white;
     position: absolute;
     display: grid;
     top: 0;

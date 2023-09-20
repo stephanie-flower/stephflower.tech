@@ -60,6 +60,7 @@
         </fieldset>
         <div class="bg">
             <div class="title">
+                <img src="explorer/hard_disk_drive.png" />
                 <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
                 <div class="line" />
                 Select an item to view its description.
@@ -82,6 +83,15 @@
 </template>
 
 <style scoped>
+
+.title {
+    display: flex;
+    flex-direction: column;
+}
+
+.title img {
+    max-width: 32px;
+}
 
 fieldset {
     padding: 2px;

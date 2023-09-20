@@ -30,7 +30,6 @@
 
 <style>
     .text {
-        color: white;
         font-size: 0.8rem;
     }
 
@@ -53,7 +52,6 @@
     .icon-selected .text {
         border: dotted black 1px;
         background-color: #000080;
-        color: white;
     }
 
     .icon-selected img {

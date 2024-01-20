@@ -16,12 +16,6 @@
             title: "Burble",
             open : () => { console.log("open burble"); }
         },
-        {
-            title: "rhulani.me",
-            open : () => { console.log("open rhulani.me"); }
-        },
-
-
     ];
 
 </script>
@@ -44,17 +38,17 @@
             <div class="toolbar">
                 <div class="btns">
                     <Sep />
-                    <div> <img src="explorer/open.png" /> Back </div>
-                    <div> <img src="explorer/open.png" /> Forward </div>
-                    <div> <img src="explorer/open.png" /> Up </div>
+                    <div> <img src="explorer/back.png" /> Back </div>
+                    <div> <img src="explorer/forward.png" /> Forward </div>
+                    <div> <img src="explorer/up.png" /> Up </div>
                     <Sep />
-                    <div> <img src="explorer/open.png" /> Cut </div>
-                    <div> <img src="explorer/open.png" /> Copy </div>
-                    <div> <img src="explorer/open.png" /> Paste </div>
+                    <div> <img src="explorer/cut.png" /> Cut </div>
+                    <div> <img src="explorer/copy.png" /> Copy </div>
+                    <div> <img src="explorer/paste.png" /> Paste </div>
                     <Sep />
-                    <div> <img src="explorer/open.png" /> Undo </div>
+                    <div> <img src="explorer/undo.png" /> Undo </div>
                     <Sep />
-                    <div> <img src="explorer/open.png" /> Delete </div>
+                    <div> <img src="explorer/delete.png" /> Delete </div>
                 </div>
             </div>
         </fieldset>
@@ -63,12 +57,13 @@
                 <img src="explorer/hard_disk_drive.png" />
                 <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
                 <div class="line" />
-                Select an item to view its description.
+                <span> Select an item to view its description. </span>
             </div>
             <div class="folders">
                 <DesktopIcon v-for="item in projects"
                     image="desktopIcons/projects.png"
                     :title="item.title"
+                    class="file-item"
                     @open="item.open"
                 />
             </div>
@@ -87,10 +82,22 @@
 .title {
     display: flex;
     flex-direction: column;
+    margin: 30px 10px;
 }
 
 .title img {
     max-width: 32px;
+    margin-left: 10px;
+}
+
+.title strong {
+    margin-left: 8px;
+}
+
+.title span {
+    width: 110px;
+    margin: 20px 8px;
+    font-size: 0.78rem;
 }
 
 fieldset {
@@ -118,10 +125,23 @@ fieldset {
     flex-direction: column;
     width: 50px;
     align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.btns div:hover {
+    border: 1px solid rgb(128, 128, 128);
 }
 
 .btns img {
-    width: 24px;
+    height: 18px;
+    margin: 4px;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Universal support since 2021   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
 
 .btns .sep {
@@ -152,6 +172,10 @@ fieldset {
 .folders {
     display: flex;
     flex-direction: row;
+}
+
+.file-item {
+    height: min-content;
 }
 
 </style>

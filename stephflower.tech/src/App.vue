@@ -8,10 +8,18 @@ import Projects from './components/sections/Projects.vue';
 import Skills from './components/sections/Skills.vue';
 import { ref } from 'vue';
 
+  export type Window = {
+    image: String,
+    title: String,
+    open: () => void;
+    minw: number,
+    cont: any,
+  }
+
   var showWindows = [ref(false), ref(false), ref(false), ref(false)];
   var showTaskBars = [ref(false), ref(false), ref(false), ref(false)];
 
-  const icons = [
+  const icons: Window[] = [
     {
       image : "desktopIcons/about.png",
       title : "About",

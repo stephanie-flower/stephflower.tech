@@ -2,21 +2,44 @@
     import '98.css';
     import DesktopIcon from '../DesktopIcon.vue';
     import Sep from '../Sep.vue';
+    import Swordle from './Projects/Swordle.vue';
+    import Website from './Projects/Website.vue';
+    import Burble from './Projects/Burble.vue';
+    import { ref } from 'vue';
+
 
     const projects = [
         {
             title : "Swordle",
-            open : () => { console.log("open swordle"); }
+            name : 'swordle',
+            open : () => { changeContent('swordle'); },
+            component : Swordle,
         },
         {
             title: "stephflower.tech",
-            open : () => { console.log("open stephflower.tech"); }
+            name : 'website',
+            open : () => { changeContent('website'); },
+            component : Website,
         },
         {
             title: "Burble",
-            open : () => { console.log("open burble"); }
+            name : 'burble',
+            open : () => { changeContent('burble'); },
+            component : Burble,
         },
     ];
+
+    const currentContent = ref('base');
+
+    function changeContent(newContent: string) { 
+        currentContent.value = newContent;
+    };
+
+    function back() {
+        if (currentContent.value != 'base') {
+            currentContent.value = 'base';
+        }
+    }
 
 </script>
 
@@ -38,7 +61,7 @@
             <div class="toolbar">
                 <div class="btns">
                     <Sep />
-                    <div> <img src="explorer/back.png" /> Back </div>
+                    <div @click="back()"> <img src="explorer/back.png" /> Back </div>
                     <div> <img src="explorer/forward.png" /> Forward </div>
                     <div> <img src="explorer/up.png" /> Up </div>
                     <Sep />
@@ -52,20 +75,27 @@
                 </div>
             </div>
         </fieldset>
-        <div class="bg">
-            <div class="title">
-                <img src="explorer/hard_disk_drive.png" />
-                <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
-                <div class="line" />
-                <span> Select an item to view its description. </span>
+        <div v-if="currentContent === 'base'">
+            <div class="bg">
+                <div class="title">
+                    <img src="explorer/hard_disk_drive.png" />
+                    <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
+                    <div class="line" />
+                    <span> Select an item to view its description. </span>
+                </div>
+                <div class="folders">
+                    <DesktopIcon v-for="item in projects"
+                        image="desktopIcons/projects.png"
+                        :title="item.title"
+                        class="file-item"
+                        @open="item.open"
+                    />
             </div>
-            <div class="folders">
-                <DesktopIcon v-for="item in projects"
-                    image="desktopIcons/projects.png"
-                    :title="item.title"
-                    class="file-item"
-                    @open="item.open"
-                />
+            </div>
+        </div>
+        <div v-for="project in projects"> 
+            <div v-if="currentContent === project.name"> 
+                <component :is="project.component" />
             </div>
         </div>
         <div class="status-bar">

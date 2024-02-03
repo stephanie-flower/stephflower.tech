@@ -127,7 +127,6 @@
 .title span {
     width: 110px;
     margin: 20px 8px;
-    font-size: 0.78rem;
 }
 
 fieldset {

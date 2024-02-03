@@ -29,8 +29,9 @@
 </template>
 
 <style>
+
     .text {
-        font-size: 0.8rem;
+        font-size: 14px;
     }
 
     .icon {

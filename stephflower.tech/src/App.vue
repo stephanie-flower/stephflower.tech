@@ -6,49 +6,73 @@ import About from './components/sections/About.vue';
 import Contact from './components/sections/Contact.vue';
 import Projects from './components/sections/Projects.vue';
 import Skills from './components/sections/Skills.vue';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
-  export type Window = {
-    image: String,
-    title: String,
-    open: () => void;
-    minw: number,
-    cont: any,
+  export type WindowType = {
+    id:    string;
+    image: string;
+    title: string;
+    minw:  number;
+    cont:  typeof About;
   }
 
-  var showWindows = [ref(false), ref(false), ref(false), ref(false)];
-  var showTaskBars = [ref(false), ref(false), ref(false), ref(false)];
+  const applicationOpenFn = (id: string) => {
+    windows[id].value = true;
+    taskbars[id].value = true;
+  };
 
-  const icons: Window[] = [
+  const applicationCloseFn = (id: string, minimise?: boolean) => {
+    windows[id].value = false;
+    if (!minimise) {
+      taskbars[id].value = false;
+    }
+  };
+
+  const toggleVisibleAppFn = (id: string) => {
+    windows[id].value = !windows[id].value;
+  };
+
+  const applications: WindowType[] = [
     {
+      id :    "about",
       image : "desktopIcons/about.png",
       title : "About",
-      open : () => { showWindows[0].value = true; showTaskBars[0].value = true; },
-      minw : 600,
-      cont : About
+      minw :  600,
+      cont :  About,
     },
     {
+      id :    "contact",
       image : "desktopIcons/contact.png",
       title : "Contact",
-      open : () => { showWindows[1].value = true; showTaskBars[1].value = true; },
-      minw : 300,
-      cont : Contact
+      minw :  300,
+      cont :  Contact,
     },
     {
+      id :    "project",
       image : "desktopIcons/projects.png",
       title : "Projects",
-      open : () => { showWindows[2].value = true; showTaskBars[2].value = true; },
-      minw : 600,
-      cont : Projects
+      minw :  600,
+      cont :  Projects,
     },
     {
+      id:     "skills",
       image : "desktopIcons/skills.png",
       title : "Skills",
-      open : () => { showWindows[3].value = true; showTaskBars[3].value = true; },
-      minw : 300,
-      cont : Skills
+      minw :  300,
+      cont :  Skills,
     }
   ];
+
+  const windowToShowRef = (windows: WindowType[]) => {
+    const keys = windows.map((app: WindowType) => app.id);
+    return keys.reduce<Record<string, Ref<boolean>>>((result, key) => {
+      result[key] = ref(false);
+      return result;
+    }, {});
+  }
+
+  const windows = windowToShowRef(applications);
+  const taskbars = windowToShowRef(applications);
 
 </script>
 
@@ -56,27 +80,27 @@ import { ref } from 'vue';
 
     <div class="desktopIcons">
 
-      <DesktopIcon v-for="item in icons"
-        @open="item.open" 
-        :image="item.image" 
-        :title="item.title" 
+      <DesktopIcon v-for="icon in applications"
+        @open="applicationOpenFn(icon.id)" 
+        :image="icon.image" 
+        :title="icon.title" 
       />
 
     </div>
 
-    <Window v-for="(item, index) in icons"
-      @close="() => { showWindows[index].value = false; showTaskBars[index].value = false }"
-      @hide="() => { showWindows[index].value = false; }" 
-      v-show="showWindows[index].value"
-      :title="item.title"
-      :minw="item.minw">
-      <component :is="item.cont" />
+    <Window v-for="app in applications"
+      @close="applicationCloseFn(app.id)"
+      @hide="applicationCloseFn(app.id, true)" 
+      v-show="windows[app.id].value"
+      :title="app.title"
+      :minw="app.minw">
+      <component :is="app.cont" />
     </Window>
 
     <TaskBar 
-      :taskBarWindows="icons"
-      :showWindows="showTaskBars"
-      @toggle="(n) => { showWindows[n].value = !showWindows[n].value }"/>
+      :taskBarWindows="applications"
+      :showWindows="taskbars"
+      @toggle="toggleVisibleAppFn($event)"/>
 
 </template>
 

@@ -21,9 +21,9 @@
 <style scoped>
 
 .container {
+    font-size: 14px;
     background-color: white;
     padding: 30px;
-    font-size: 14px;
 }
 
 .container li {

@@ -1,22 +1,27 @@
 <script setup lang="ts">
-    import "98.css";
-    import { reactive, ref } from "vue";
-    import StartMenu from "./StartMenu.vue";
-    import TaskBarWindow from "./TaskBarWindow.vue";
-    import Sep from "./Sep.vue";
+import "98.css";
+import { reactive, ref } from "vue";
+import StartMenu from "./StartMenu.vue";
+import TaskBarWindow from "./TaskBarWindow.vue";
+import Sep from "./Sep.vue";
+import type { WindowType } from "@/App.vue";
+import type { Ref } from 'vue';
 
-    const props = defineProps(['taskBarWindows', 'showWindows']);
+  const props = defineProps<{
+    taskBarWindows: WindowType[],
+    showWindows: Record<string, Ref<boolean>>,
+  }>();
 
-    const date = reactive({time: new Date().toTimeString().slice(0, 5)});
-    var showStartMenu = ref(false);
+  const date = reactive({time: new Date().toTimeString().slice(0, 5)});
+  var showStartMenu = ref(false);
 
-    window.setInterval(() => {
-        date.time = new Date().toTimeString().slice(0, 5);
-    }, 1000);
+  window.setInterval(() => {
+    date.time = new Date().toTimeString().slice(0, 5);
+  }, 1000);
 
-    const toggleStartMenu = () => {
-        showStartMenu.value = !showStartMenu.value;
-    }
+  const toggleStartMenu = () => {
+    showStartMenu.value = !showStartMenu.value;
+  }
 
 </script>
 
@@ -32,11 +37,11 @@
         <Sep />
         
         <div class="windows">
-            <TaskBarWindow v-for="(item, index) in props.taskBarWindows"
-                v-show="props.showWindows[index].value"
+            <TaskBarWindow v-for="item in props.taskBarWindows"
+                v-show="props.showWindows[item.id].value"
                 :img="item.image"
                 :title="item.title"
-                @click="$emit('toggle', index)"/>
+                @click="$emit('toggle', item.id)"/>
         </div>
         
         <div class="time">
@@ -74,10 +79,11 @@
     }
 
     .taskbar b {
-        font-size: 1rem;
+        font-size: 16px;
     }
     
     .time {
+        font-size: 14px;
         margin-left: auto;
         margin-right: 4px;
         margin-top: 4px;
@@ -86,7 +92,6 @@
         flex-direction: row;
         align-items: center;
         justify-items: center;
-        font-size: 12px;
         padding: 0.3vw;
         box-shadow: inset -2px -2px #dfdfdf,inset 2px 2px #808080,inset -2px -2px grey,inset 2px 2px #fff;
     }

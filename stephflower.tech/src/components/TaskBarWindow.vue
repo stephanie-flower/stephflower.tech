@@ -1,6 +1,5 @@
 <script setup lang="ts">
     import "98.css";
-    import { ref } from 'vue';
 
     const props = defineProps(['img', 'title'])
 

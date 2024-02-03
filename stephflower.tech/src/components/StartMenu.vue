@@ -48,8 +48,8 @@
     }
 
     .vertical-title .title-bar-text {
+        font-size: 20px;
         font-weight: 400;
-        font-size: 1.5rem;
         transform: rotate(-90deg) translateX(50%) translateY(30%);
         transform-origin: center;
     }

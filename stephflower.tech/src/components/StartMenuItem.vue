@@ -33,7 +33,7 @@
 
     .optionText {
         margin: 20px;
-        font-size: 1rem;
+        font-size: 14px;
     }
 
 </style>

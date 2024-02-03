@@ -2,10 +2,7 @@
   import '98.css';
   import Toolbar from '../Toolbar.vue';
   import Sep from '../Sep.vue';
-
-  const back = () => {
-    console.log('bbdkfhjks');
-  };
+import ContactWebpage from './ContactWebpage.vue';
 
 </script>
 
@@ -16,7 +13,7 @@
             <div class="toolbar">
                 <div class="btns">
                     <Sep />
-                    <div @click="back()"> <img src="explorer/back.png" /> Back </div>
+                    <div> <img src="explorer/back.png" /> Back </div>
                     <div> <img src="explorer/forward.png" /> Forward </div>
                     <div> <img src="explorer/stop.png" /> Stop </div>
                     <div> <img src="explorer/refresh.png" /> Refresh </div>
@@ -47,16 +44,7 @@
             </div>
         </div>
     </fieldset>
-    <div class="page-content">
-        <img src="text.gif" /> <br />
-        <img src="https://web.archive.org/web/20090829101745/http://geocities.com/viethouston2002/home_files/cat.gif" /> <br />
-        <a href="">linkedin</a> <br />
-        <a href="">twitter</a> (usually private) <br />
-        <a href="">github</a> <br />
-        <a href="">my favourite website !! lol :3</a> <br />
-        <img src="https://pilk.uk/images/netscape.gif" />
-        <img src="https://pilk.uk/images/iexplore.gif" />
-    </div>
+    <ContactWebpage />
 
 </template>
 
@@ -149,13 +137,5 @@ fieldset {
     line-height: 14px;
     font-size: 8px;
 }
-
-.page-content {
-    border: 2px solid;
-    border-style: inset;
-    background-image: url("https://web.archive.org/web/20091026110238/http://geocities.com/aznbutterfly3/bluestars2.gif");
-    height: 500px;
-}
-
 
 </style>

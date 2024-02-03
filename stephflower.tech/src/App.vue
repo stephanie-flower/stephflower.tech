@@ -44,7 +44,7 @@ import { ref, type Ref } from 'vue';
       id :    "contact",
       image : "desktopIcons/contact.png",
       title : "Contact",
-      minw :  300,
+      minw :  800,
       cont :  Contact,
     },
     {

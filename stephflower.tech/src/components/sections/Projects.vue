@@ -6,7 +6,7 @@
     import Website from './Projects/Website.vue';
     import Burble from './Projects/Burble.vue';
     import { ref } from 'vue';
-
+    import Toolbar from '../Toolbar.vue';
 
     const projects = [
         {
@@ -46,17 +46,7 @@
 <template>
 
     <div>
-        <fieldset>
-            <div class="toolbar">
-                <Sep />
-                <div class="optn"> <u>F</u>ile </div> 
-                <div class="optn"> <u>E</u>dit </div> 
-                <div class="optn"> <u>V</u>iew </div> 
-                <div class="optn"> <u>G</u>o </div> 
-                <div class="optn"> F<u>a</u>vorites </div> 
-                <div class="optn"> <u>H</u>elp </div> 
-            </div>
-        </fieldset>
+        <Toolbar />
         <fieldset>
             <div class="toolbar">
                 <div class="btns">

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="sep"></div>
+    <div class="sep" />
 </template>
 
 <style scoped>
@@ -11,8 +11,7 @@
     .sep {
         box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
         width: 3px;
-        height: 75%;
-        margin: 4px;
+        height: 100%;
     }
 
 </style>

@@ -2,7 +2,7 @@
   import '98.css';
   import Toolbar from '../Toolbar.vue';
   import Sep from '../Sep.vue';
-import ContactWebpage from './ContactWebpage.vue';
+  import ContactWebpage from './ContactWebpage.vue';
 
 </script>
 
@@ -45,10 +45,27 @@ import ContactWebpage from './ContactWebpage.vue';
         </div>
     </fieldset>
     <ContactWebpage />
+    <div class="status-bar">
+            <p class="status-bar-field"><img src="explorer/iepage.png" /></p>
+            <p class="status-bar-field"></p>
+            <p class="status-bar-field"><img src="explorer/ie.png" /> Internet zone </p>
+        </div>
 
 </template>
 
 <style scoped>
+
+.status-bar-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.status-bar img {
+    height: 14px;
+    margin-right: 4px;
+    padding: 0;
+}
 
 .btns {
     display: flex;

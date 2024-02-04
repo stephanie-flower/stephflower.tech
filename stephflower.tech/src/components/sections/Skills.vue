@@ -1,12 +1,13 @@
 <script setup lang="ts">
     import '98.css';
+    import Minesweeper from '../apps/Minesweeper.vue';
 
 </script>
 
 <template>
 
     <div>
-        These are the skills I have
+        <Minesweeper />
     </div>
 
 </template>

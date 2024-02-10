@@ -9,9 +9,10 @@
                          @click="select(cell)"
                          @click.right="flag(cell)"
                          oncontextmenu="return false;">
+                         {{ cell.position.x }} {{ cell.position.y }}
                          <div v-if="cell.clicked">
                             <img v-if="cell.mine" src="/minesweeper/mine.png" class="mine" />
-                            <div v-else-if="cell.number > 0">{{ cell.number }}</div>
+                            <div v-else-if="cell.number > 0"><br>{{ cell.number }}</div>
                          </div>
                     </div>
                 </div>
@@ -23,6 +24,7 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
+import Chance from "chance";
 
 const width: number = 8;
 const height: number = 8;
@@ -43,30 +45,22 @@ type Cell = {
 
 function generateMines(max: number): Position[] {
     let genMines: Position[] = [];
+    let chance = Chance();
 
-    let pointIndexes: number[] = [];
-    let minIndex = 0;
-    let maxIndex = (width * height) - 1 - max - 1;
-    let index: number;
-    for (let i = 0; i < max; i++) {
-        index = getRandomInt(minIndex, maxIndex);
-        pointIndexes.push(index);
-        if (maxIndex - index > max - i) {
-            maxIndex--;
-        }
-    }
+    const pointIndexes: number[] = [];
 
     for (const index of pointIndexes) {
         genMines.push(indexToPoint(index));
     }
-
+    
+    
     return genMines;
 }
 
 function indexToPoint(i: number): Position {
     return {
         x: i % height,
-        y: Math.floor(i / width),
+        y: Math.round(i / width),
     }
 }
 
@@ -81,7 +75,7 @@ function generateGrid(): Cell[][] {
                 mine: mines.some((mine) => mine.x === i && mine.y === j),
                 number: 0,
                 flagged: false,
-                clicked: false,
+                clicked: true,
             };
         }
     }
@@ -97,6 +91,7 @@ function generateNumbers() {
                     let newY = mine.y + y;
                     if (newX >= 0 && newX < width && newY >=0 && newY < height) {
                         grid.value[newX][newY].number += 1;
+                        console.log(mine, newX, newY);
                     }
                 }
             }
@@ -135,8 +130,8 @@ function getRandomInt(min: number, max: number) { //thanks mdn web docs <333
 }
 
 .cell {
-    width: 28px;
-    height: 28px;
+    width: 64px;
+    height: 64px;
     border: 1px solid black;
     margin: 1px;
     background-image: url("/minesweeper/cell.png");
@@ -146,6 +141,7 @@ function getRandomInt(min: number, max: number) { //thanks mdn web docs <333
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 .clicked {

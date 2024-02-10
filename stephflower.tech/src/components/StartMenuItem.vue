@@ -1,4 +1,6 @@
 <script setup lang="ts">
+
+// credit: https://commons.wikimedia.org/wiki/Category:Minesweeper
     
 </script>
 

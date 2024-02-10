@@ -10,7 +10,6 @@
 
     const toggleActive = () => {
         if (isActive.value) {
-            //console.log("open window "); //debug
             emit("open");
         }
         isActive.value = !isActive.value;

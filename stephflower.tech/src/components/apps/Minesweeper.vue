@@ -86,15 +86,18 @@ function generateNumbers() {
         for (let x = -1; x < 2; x++) {
             for (let y = -1; y < 2; y++) {
                 if (!(y === 0 && x === 0)) {
-                    let newX = mine.x + x;
-                    let newY = mine.y + y;
-                    if (newX >= 0 && newX < width && newY >=0 && newY < height) {
-                        grid.value[newX][newY].number += 1;
+                    let newPos = {x: mine.x + x, y: mine.y + y}
+                    if (validPosition(newPos)) {
+                        grid.value[newPos.x][newPos.y].number += 1;
                     }
                 }
             }
         }
     }
+}
+
+function validPosition(pos: Position): boolean {
+    return pos.x >= 0 && pos.x < width && pos.y >=0 && pos.y < height
 }
 
 const mines: Position[] = generateMines(noOfMines);
@@ -103,19 +106,6 @@ generateNumbers();
 
 function select(cell: Cell) {
     cell.clicked = true;
-    if (!cell.flagged && !cell.clicked) {
-        if (cell.number === 0) {
-            for (let i = -1; i < 2; i++) {
-                for (let j = -1; j < 2; j++) {
-                    const newX = cell.position.x + i;
-                    const newY = cell.position.y + j;
-                    if (newX >= 0 && newX < width && newY >=0 && newY < height) {
-                        select(grid.value[newX][newY])
-                    }
-                }
-            }
-        }
-    }
 }
 
 function flag(cell: Cell) {

@@ -7,6 +7,7 @@ import Contact from './components/sections/Contact.vue';
 import Projects from './components/sections/Projects.vue';
 import Skills from './components/sections/Skills.vue';
 import { ref, type Ref } from 'vue';
+import BonziBuddy from './components/sections/BonziBuddy.vue';
 
   export type WindowType = {
     id:    string;
@@ -96,6 +97,8 @@ import { ref, type Ref } from 'vue';
       :minw="app.minw">
       <component :is="app.cont" />
     </Window>
+
+    <BonziBuddy />
 
     <TaskBar 
       :taskBarWindows="applications"

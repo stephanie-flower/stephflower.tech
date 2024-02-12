@@ -58,7 +58,7 @@ import { ref, type Ref } from 'vue';
       id:     "skills",
       image : "desktopIcons/skills.png",
       title : "Skills",
-      minw :  300,
+      minw :  308,
       cont :  Skills,
     }
   ];

@@ -13,6 +13,6 @@
   ],
   "compilerOptions": {
     "strict": true,
-    "lib" : ["es2017", "DOM"],
+    "lib" : ["es2019", "DOM"],
   },
 }

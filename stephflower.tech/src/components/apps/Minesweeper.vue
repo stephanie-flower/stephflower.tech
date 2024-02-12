@@ -9,7 +9,6 @@
                          @click="select(cell)"
                          @click.right="flag(cell)"
                          oncontextmenu="return false;">
-                         {{ cell.position.x }} {{ cell.position.y }}
                          <div v-if="cell.clicked">
                             <img v-if="cell.mine" src="/minesweeper/mine.png" class="mine" />
                             <div v-else-if="cell.number > 0"><br>{{ cell.number }}</div>
@@ -47,20 +46,20 @@ function generateMines(max: number): Position[] {
     let genMines: Position[] = [];
     let chance = Chance();
 
-    const pointIndexes: number[] = [];
+    let locations = Array.from({ length: width * height }, (value, index) => index);
+    let mineLocations = chance.pickset(locations, max)
 
-    for (const index of pointIndexes) {
-        genMines.push(indexToPoint(index));
+    for (const num of mineLocations) {
+        genMines.push(indexToPoint(num));
     }
-    
     
     return genMines;
 }
 
 function indexToPoint(i: number): Position {
     return {
-        x: i % height,
-        y: Math.round(i / width),
+        x: i % width,
+        y: Math.floor(i / height),
     }
 }
 
@@ -75,7 +74,7 @@ function generateGrid(): Cell[][] {
                 mine: mines.some((mine) => mine.x === i && mine.y === j),
                 number: 0,
                 flagged: false,
-                clicked: true,
+                clicked: false,
             };
         }
     }
@@ -91,7 +90,6 @@ function generateNumbers() {
                     let newY = mine.y + y;
                     if (newX >= 0 && newX < width && newY >=0 && newY < height) {
                         grid.value[newX][newY].number += 1;
-                        console.log(mine, newX, newY);
                     }
                 }
             }
@@ -104,9 +102,19 @@ const grid: Ref<Cell[][]> = ref(generateGrid());
 generateNumbers();
 
 function select(cell: Cell) {
-    console.log(cell.position.x, cell.position.y);
-    if (!cell.flagged) {
-        cell.clicked = true;
+    cell.clicked = true;
+    if (!cell.flagged && !cell.clicked) {
+        if (cell.number === 0) {
+            for (let i = -1; i < 2; i++) {
+                for (let j = -1; j < 2; j++) {
+                    const newX = cell.position.x + i;
+                    const newY = cell.position.y + j;
+                    if (newX >= 0 && newX < width && newY >=0 && newY < height) {
+                        select(grid.value[newX][newY])
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -114,10 +122,6 @@ function flag(cell: Cell) {
     if (!cell.clicked) {
         cell.flagged = !cell.flagged;
     }
-}
-
-function getRandomInt(min: number, max: number) { //thanks mdn web docs <333
-    return Math.floor(Math.random() * max) + min;
 }
 
 </script>
@@ -130,8 +134,8 @@ function getRandomInt(min: number, max: number) { //thanks mdn web docs <333
 }
 
 .cell {
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
     border: 1px solid black;
     margin: 1px;
     background-image: url("/minesweeper/cell.png");

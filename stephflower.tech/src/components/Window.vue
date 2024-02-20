@@ -3,7 +3,7 @@
     import { defineComponent, ref } from "vue";
     import Vue3DraggableResizable from "vue3-draggable-resizable";
 
-    const props = defineProps(['title', 'minw']);
+    const props = defineProps(['title', 'minw', 'draggable']);
 
 </script>
 
@@ -13,6 +13,7 @@
     :min-w="props.minw"
     :min-h="65"
     :handles="['br']"
+    :draggable="draggable"
     >
         <div class="window">
             <div class="title-bar">

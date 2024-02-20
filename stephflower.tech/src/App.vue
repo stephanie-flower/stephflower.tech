@@ -8,6 +8,7 @@ import Projects from './components/sections/Projects.vue';
 import Skills from './components/sections/Skills.vue';
 import { ref, type Ref } from 'vue';
 import BonziBuddy from './components/sections/BonziBuddy.vue';
+import MobileVer from './components/MobileVer.vue';
 
   export type WindowType = {
     id:    string;
@@ -75,9 +76,16 @@ import BonziBuddy from './components/sections/BonziBuddy.vue';
   const windows = windowToShowRef(applications);
   const taskbars = windowToShowRef(applications);
 
+  const bonziBuddy: boolean = false;
+
+  const screenSize = { width: screen.width, height: screen.height };
+  const isMobile = screenSize.width < 1350;
+
 </script>
 
 <template>
+
+  <div v-if="!isMobile">
 
     <div class="desktopIcons">
 
@@ -98,12 +106,20 @@ import BonziBuddy from './components/sections/BonziBuddy.vue';
       <component :is="app.cont" />
     </Window>
 
-    <BonziBuddy />
+    {{ screenSize }}
+
+    <BonziBuddy v-if="bonziBuddy" />
 
     <TaskBar 
       :taskBarWindows="applications"
       :showWindows="taskbars"
       @toggle="toggleVisibleAppFn($event)"/>
+
+  </div>
+
+  <div v-else>
+    <MobileVer />
+  </div>
 
 </template>
 

@@ -1,9 +1,9 @@
 <template>
 
     <div>
-        <div v-for="row of grid">
+        <div v-for="row of grid" :key="row.toString()" >
             <div class="row">
-                <div v-for="cell of row">
+                <div v-for="cell of row" :key="cell.position.toString()">
                     <div class="cell"
                         :class="{ clicked: cell.clicked, flagged: cell.flagged }" 
                          @click="select(cell)"
@@ -104,8 +104,24 @@ const mines: Position[] = generateMines(noOfMines);
 const grid: Ref<Cell[][]> = ref(generateGrid());
 generateNumbers();
 
+// const adj: Position[] = [{x: 1, y: 0}, 
+//                          {x: 0, y: 1},
+//                          {x: 1, y: -1},
+//                          {x: -1, y: 0},
+//                          {x: 0, y: -1}];
+
 function select(cell: Cell) {
-    cell.clicked = true;
+    if (!cell.flagged) {
+        cell.clicked = true;
+        // if (cell.number === 0) {
+        //     for (const pos of adj) {
+        //         let newPos = {x: cell.position.x + pos.x, y: cell.position.y + pos.y};
+        //         if (validPosition(newPos)) {
+        //             select(grid.value[newPos.x][newPos.y]);
+        //         }
+        //     }
+        // }
+    }
 }
 
 function flag(cell: Cell) {

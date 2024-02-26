@@ -9,6 +9,7 @@ import Skills from './components/sections/Skills.vue';
 import { ref, type Ref } from 'vue';
 import BonziBuddy from './components/sections/BonziBuddy.vue';
 import MobileVer from './components/MobileVer.vue';
+import Minesweeper from './components/apps/Minesweeper.vue';
 
   export type WindowType = {
     id:    string;
@@ -75,12 +76,15 @@ import MobileVer from './components/MobileVer.vue';
 
   const windows = windowToShowRef(applications);
   const taskbars = windowToShowRef(applications);
+  const startMenuApps: Record<string, Ref<boolean>> = {
+    'minesweeper' : ref(false),
+  };
 
   const bonziBuddy: boolean = false;
 
   const screenSize = { width: screen.width, height: screen.height };
-  const isMobile = screenSize.width < 1350;
-
+  //const isMobile = screenSize.width < 1350;
+  const isMobile = false; //debug
 </script>
 
 <template>
@@ -90,6 +94,7 @@ import MobileVer from './components/MobileVer.vue';
     <div class="desktopIcons">
 
       <DesktopIcon v-for="icon in applications"
+        :key="icon.title"
         @open="applicationOpenFn(icon.id)" 
         :image="icon.image" 
         :title="icon.title" 
@@ -98,12 +103,21 @@ import MobileVer from './components/MobileVer.vue';
     </div>
 
     <Window v-for="app in applications"
+      :key="app.id"
       @close="applicationCloseFn(app.id)"
       @hide="applicationCloseFn(app.id, true)" 
       v-show="windows[app.id].value"
       :title="app.title"
       :minw="app.minw">
       <component :is="app.cont" />
+    </Window>
+
+    <Window
+     :title="'Minesweeper'" 
+     @close="() => { startMenuApps['minesweeper'].value = false }"
+     @open="() => { startMenuApps['minesweeper'].value = true }"
+     :minw="310">
+      <Minesweeper />   
     </Window>
 
     {{ screenSize }}

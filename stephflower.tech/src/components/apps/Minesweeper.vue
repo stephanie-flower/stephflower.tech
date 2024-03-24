@@ -1,6 +1,8 @@
 <template>
 
     <div>
+        <div v-if="state === 'lost'"> You lose! </div>
+        <div v-if="state === 'won'"> You win! </div>
         <div v-for="row of grid" :key="row.toString()" >
             <div class="row">
                 <div v-for="cell of row" :key="cell.position.toString()">
@@ -28,6 +30,8 @@ import Chance from "chance";
 const width: number = 8;
 const height: number = 8;
 const noOfMines: number = 10;
+
+type GameState = 'playing' | 'won' | 'lost';
 
 type Position = {
     x: number;
@@ -103,30 +107,49 @@ function validPosition(pos: Position): boolean {
 const mines: Position[] = generateMines(noOfMines);
 const grid: Ref<Cell[][]> = ref(generateGrid());
 generateNumbers();
+const state: Ref<GameState> = ref("playing");
+const flaggedMines: Ref<number> = ref(0);
 
-// const adj: Position[] = [{x: 1, y: 0}, 
-//                          {x: 0, y: 1},
-//                          {x: 1, y: -1},
-//                          {x: -1, y: 0},
-//                          {x: 0, y: -1}];
+const adj: Position[] = [{x: 1, y: 0}, 
+                         {x: 0, y: 1},
+                         {x: 1, y: -1},
+                         {x: -1, y: 0},
+                         {x: 0, y: -1},
+                         {x: -1, y: -1},
+                         {x: 1, y: 1},
+                         {x: -1, y: 1}];
 
 function select(cell: Cell) {
-    if (!cell.flagged) {
+    if (flaggedMines.value === noOfMines) { 
+        state.value = 'won';
+    }
+    if (!cell.flagged && state.value === 'playing') {
         cell.clicked = true;
-        // if (cell.number === 0) {
-        //     for (const pos of adj) {
-        //         let newPos = {x: cell.position.x + pos.x, y: cell.position.y + pos.y};
-        //         if (validPosition(newPos)) {
-        //             select(grid.value[newPos.x][newPos.y]);
-        //         }
-        //     }
-        // }
+        if (cell.mine) {
+            state.value = 'lost';
+        }
+        if (cell.number === 0) {
+            for (const pos of adj) {
+                let newPos = {x: cell.position.x + pos.x, y: cell.position.y + pos.y};
+                if (validPosition(newPos)) {
+                    select(grid.value[newPos.x][newPos.y]);
+                }
+            }
+        }
     }
 }
 
 function flag(cell: Cell) {
     if (!cell.clicked) {
         cell.flagged = !cell.flagged;
+        if (cell.flagged && cell.mine) {
+            flaggedMines.value += 1;
+        } else if (!cell.flagged && cell.mine) {
+            flaggedMines.value -= 1;
+        }
+    }
+    if (flaggedMines.value === noOfMines) { 
+        state.value = 'won';
     }
 }
 

@@ -1,14 +1,16 @@
 <script setup lang="ts">
 
 // credit: https://commons.wikimedia.org/wiki/Category:Minesweeper
+const emit = defineEmits(['open']);
+
     
 </script>
 
 <template>
 
-    <div class="item">
-        <img src="desktopIcons/about.png" alt="icon">
-        <div class="optionText"> <u>T</u>his is an item </div>
+    <div class="item" @click="emit('open')">
+        <img src="/minesweeper/mine.png" alt="icon">
+        <div class="optionText"> <u>M</u>inesweeper </div>
     </div>
 
 </template>

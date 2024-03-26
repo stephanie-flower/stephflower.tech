@@ -16,7 +16,7 @@
             component : Swordle,
         },
         {
-            title: "stephflower.tech",
+            title: "My website",
             name : 'website',
             open : () => { changeContent('website'); },
             component : Website,
@@ -51,31 +51,31 @@
             <div class="toolbar">
                 <div class="btns">
                     <Sep />
-                    <div @click="back()"> <img src="explorer/back.png" /> Back </div>
-                    <div> <img src="explorer/forward.png" /> Forward </div>
-                    <div> <img src="explorer/up.png" /> Up </div>
+                    <div @click="back()"> <img src="/explorer/back.png" /> Back </div>
+                    <div> <img src="/explorer/forward.png" /> Forward </div>
+                    <div> <img src="/explorer/up.png" /> Up </div>
                     <Sep />
-                    <div> <img src="explorer/cut.png" /> Cut </div>
-                    <div> <img src="explorer/copy.png" /> Copy </div>
-                    <div> <img src="explorer/paste.png" /> Paste </div>
+                    <div> <img src="/explorer/cut.png" /> Cut </div>
+                    <div> <img src="/explorer/copy.png" /> Copy </div>
+                    <div> <img src="/explorer/paste.png" /> Paste </div>
                     <Sep />
-                    <div> <img src="explorer/undo.png" /> Undo </div>
+                    <div> <img src="/explorer/undo.png" /> Undo </div>
                     <Sep />
-                    <div> <img src="explorer/delete.png" /> Delete </div>
+                    <div> <img src="/explorer/delete.png" /> Delete </div>
                 </div>
             </div>
         </fieldset>
         <div v-if="currentContent === 'base'">
             <div class="bg">
                 <div class="title">
-                    <img src="explorer/hard_disk_drive.png" />
+                    <img src="/explorer/hard_disk_drive.png" />
                     <strong style="font-size: 1.7rem; font-family: Arial;">(C:)</strong>
                     <div class="line" />
                     <span> Select an item to view its description. </span>
                 </div>
                 <div class="folders">
                     <DesktopIcon v-for="item in projects"
-                        image="desktopIcons/projects.png"
+                        image="/desktopIcons/projects.png"
                         :title="item.title"
                         class="file-item"
                         @open="item.open"
@@ -176,7 +176,7 @@ fieldset {
 }
 
 .bg {
-    background-image: url('explorer/explorerbg.png');
+    background-image: url('/explorer/explorerbg.png');
     background-size: 300px 100px;
     background-repeat: no-repeat;
     background-color: white;

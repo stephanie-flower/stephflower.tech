@@ -12,7 +12,6 @@ import Vue3DraggableResizable from "vue3-draggable-resizable";
     :min-h="65"
     :handles="['br']"
     >
-    <img src="Bonzi_buddy.gif" />
 </Vue3DraggableResizable>
 
 </template>

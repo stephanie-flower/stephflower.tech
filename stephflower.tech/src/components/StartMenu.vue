@@ -1,6 +1,9 @@
 <script setup lang="ts">
     import '98.css';
     import StartMenuItem from './StartMenuItem.vue';
+
+    const emit = defineEmits(['minesweeper']);
+
 </script>
 
 <template>
@@ -12,10 +15,7 @@
         </div>
 
         <div class="menu-options">
-            <StartMenuItem />
-            <StartMenuItem />
-            <StartMenuItem />
-            <StartMenuItem />
+            <StartMenuItem @open="emit('minesweeper')" />
         </div>
     </div>
 

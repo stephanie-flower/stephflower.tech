@@ -15,7 +15,7 @@
             <div class="window-body">
                 <div class="wrapper">
                     <div class="img">
-                        <img src="pc.png" />
+                        <img src="/pc.png" />
                     </div>
                     <div class="text">
                         System: <br>

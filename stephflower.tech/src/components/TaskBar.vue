@@ -10,7 +10,10 @@ import type { Ref } from 'vue';
   const props = defineProps<{
     taskBarWindows: WindowType[],
     showWindows: Record<string, Ref<boolean>>,
+    showMinesweeper: boolean,
   }>();
+
+  const emit = defineEmits(['minesweeper', 'toggle', 'toggleMinesweeper']);
 
   const date = reactive({time: new Date().toTimeString().slice(0, 5)});
   var showStartMenu = ref(false);
@@ -23,14 +26,19 @@ import type { Ref } from 'vue';
     showStartMenu.value = !showStartMenu.value;
   }
 
+  const openMinesweeper = () => {
+    emit('minesweeper');
+    toggleStartMenu();
+  }
+
 </script>
 
 <template>
-    <StartMenu v-show="showStartMenu" />
+    <StartMenu v-show="showStartMenu" @minesweeper="openMinesweeper" />
     <div class="taskbar">
 
         <button @click="toggleStartMenu">
-            <img src="start.png" />
+            <img src="/start.png" />
             <b> Start </b> 
         </button>
 
@@ -42,6 +50,12 @@ import type { Ref } from 'vue';
                 :img="item.image"
                 :title="item.title"
                 @click="$emit('toggle', item.id)"/>
+            <TaskBarWindow
+                v-show="showMinesweeper"
+                img="/minesweeper/mine.png"
+                title="Minesweeper"
+                @click="$emit('toggleMinesweeper')"
+            />
         </div>
         
         <div class="time">

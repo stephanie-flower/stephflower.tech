@@ -13,21 +13,21 @@
             <div class="toolbar">
                 <div class="btns">
                     <Sep />
-                    <div> <img src="explorer/back.png" /> Back </div>
-                    <div> <img src="explorer/forward.png" /> Forward </div>
-                    <div> <img src="explorer/stop.png" /> Stop </div>
-                    <div> <img src="explorer/refresh.png" /> Refresh </div>
-                    <div> <img src="explorer/home.png" /> Home </div>
+                    <div> <img src="/explorer/back.png" /> Back </div>
+                    <div> <img src="/explorer/forward.png" /> Forward </div>
+                    <div> <img src="/explorer/stop.png" /> Stop </div>
+                    <div> <img src="/explorer/refresh.png" /> Refresh </div>
+                    <div> <img src="/explorer/home.png" /> Home </div>
                     <Sep />
-                    <div> <img src="explorer/search.png" /> Search </div>
-                    <div> <img src="explorer/favourites.png" /> Favourites </div>
-                    <div> <img src="explorer/history.png" /> History </div>
-                    <div> <img src="explorer/channels.png" /> Channels </div>
+                    <div> <img src="/explorer/search.png" /> Search </div>
+                    <div> <img src="/explorer/favourites.png" /> Favourites </div>
+                    <div> <img src="/explorer/history.png" /> History </div>
+                    <div> <img src="/explorer/channels.png" /> Channels </div>
                     <Sep />
-                    <div> <img src="explorer/fullscreen.png" /> Fullscreen </div>
-                    <div> <img src="explorer/mail.png" /> Mail </div>
-                    <div> <img src="explorer/print.png" /> Print </div>
-                    <div> <img src="explorer/edit.png" /> Edit </div>
+                    <div> <img src="/explorer/fullscreen.png" /> Fullscreen </div>
+                    <div> <img src="/explorer/mail.png" /> Mail </div>
+                    <div> <img src="/explorer/print.png" /> Print </div>
+                    <div> <img src="/explorer/edit.png" /> Edit </div>
                 </div>
             </div>
         </fieldset>
@@ -37,7 +37,7 @@
             <div class="address-text">Address</div>
             <div class="address-input">
                 <div class="address-start">
-                    <img src="explorer/iepage.png" />
+                    <img src="/explorer/iepage.png" />
                     <div>https://www.stephflower.tech/contactme.html</div>
                 </div>
                 <div class="address-btn">▼</div>
@@ -46,9 +46,9 @@
     </fieldset>
     <ContactWebpage />
     <div class="status-bar">
-            <p class="status-bar-field"><img src="explorer/iepage.png" /></p>
+            <p class="status-bar-field"><img src="/explorer/iepage.png" /></p>
             <p class="status-bar-field"></p>
-            <p class="status-bar-field"><img src="explorer/ie.png" /> Internet zone </p>
+            <p class="status-bar-field"><img src="/explorer/ie.png" /> Internet zone </p>
         </div>
 
 </template>

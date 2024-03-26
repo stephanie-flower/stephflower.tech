@@ -6,7 +6,7 @@
 <template>
 
     <div class="page-content">
-        <div class="title"> <img src="text.gif" /> </div>
+        <div class="title"> <img src="/text.gif" /> </div>
         <table>
             <tr>
                 <th>

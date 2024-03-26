@@ -38,28 +38,28 @@ import Minesweeper from './components/apps/Minesweeper.vue';
   const applications: WindowType[] = [
     {
       id :    "about",
-      image : "desktopIcons/about.png",
+      image : "/desktopIcons/about.png",
       title : "About",
       minw :  600,
       cont :  About,
     },
     {
       id :    "contact",
-      image : "desktopIcons/contact.png",
+      image : "/desktopIcons/contact.png",
       title : "Contact",
       minw :  800,
       cont :  Contact,
     },
     {
       id :    "project",
-      image : "desktopIcons/projects.png",
+      image : "/desktopIcons/projects.png",
       title : "Projects",
       minw :  600,
       cont :  Projects,
     },
     {
       id:     "skills",
-      image : "desktopIcons/skills.png",
+      image : "/desktopIcons/skills.png",
       title : "Skills",
       minw :  308,
       cont :  Skills,
@@ -77,6 +77,9 @@ import Minesweeper from './components/apps/Minesweeper.vue';
   const windows = windowToShowRef(applications);
   const taskbars = windowToShowRef(applications);
   const startMenuApps: Record<string, Ref<boolean>> = {
+    'minesweeper' : ref(false),
+  };
+  const taskbarStartMenuApps: Record<string, Ref<boolean>> = {
     'minesweeper' : ref(false),
   };
 
@@ -113,21 +116,23 @@ import Minesweeper from './components/apps/Minesweeper.vue';
     </Window>
 
     <Window
+     v-if="startMenuApps.minesweeper.value"
      :title="'Minesweeper'" 
-     @close="() => { startMenuApps['minesweeper'].value = false }"
-     @open="() => { startMenuApps['minesweeper'].value = true }"
+     @close="() => { startMenuApps['minesweeper'].value = false; taskbarStartMenuApps['minesweeper'].value = false }"
+     @open="() => { startMenuApps['minesweeper'].value = true;  taskbarStartMenuApps['minesweeper'].value = true }"
      :minw="310">
       <Minesweeper />   
     </Window>
-
-    {{ screenSize }}
 
     <BonziBuddy v-if="bonziBuddy" />
 
     <TaskBar 
       :taskBarWindows="applications"
       :showWindows="taskbars"
-      @toggle="toggleVisibleAppFn($event)"/>
+      :showMinesweeper="taskbarStartMenuApps['minesweeper'].value"
+      @toggle="toggleVisibleAppFn($event)"
+      @minesweeper="() => { startMenuApps['minesweeper'].value = true; taskbarStartMenuApps['minesweeper'].value = true }"
+      @toggleMinesweeper="() => { startMenuApps['minesweeper'].value = !startMenuApps['minesweeper'].value }" />
 
   </div>
 
